@@ -37,7 +37,7 @@ class Home extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(10),
             child: TextField(
               decoration: InputDecoration(
@@ -46,7 +46,7 @@ class Home extends StatelessWidget {
                   hintText: 'Enter your email'),
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(10),
             child: TextField(
               decoration: InputDecoration(
@@ -56,11 +56,11 @@ class Home extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: ElevatedButton(
               onPressed: () {},
-              child: Text('Login'),
               style: buttonStyle,
+              child: const Text('Login'),
             ),
           ),
         ],
