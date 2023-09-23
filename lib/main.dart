@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:practice/Fragment/AlarmFragment.dart';
+import 'package:practice/Fragment/BalanceFragment.dart';
+import 'package:practice/Fragment/ContactFragment.dart';
+import 'package:practice/Fragment/EmailFragment.dart';
+import 'package:practice/Fragment/HomeFragment.dart';
+import 'package:practice/Fragment/PersonFragment.dart';
+import 'package:practice/Fragment/SearchFragment.dart';
+import 'package:practice/Fragment/SettingsFragment.dart';
 
 void main() => runApp(const MyApp());
 
@@ -19,83 +27,42 @@ class MyApp extends StatelessWidget {
 class Home extends StatelessWidget {
   Home({super.key});
 
-  var myImage = [
-    {
-      'title': 'Loki',
-      'img':
-          'https://th.bing.com/th/id/OIP.A3UAR6_iNY6UPM27f_xtEQHaHa?pid=ImgDet&rs=1'
-    },
-    {
-      'title': 'Loki2',
-      'img':
-          'https://th.bing.com/th/id/OIP.lSdV0-TAk4eY9boJF7VrxQHaIh?pid=ImgDet&rs=1'
-    },
-    {
-      'title': 'Loki3',
-      'img':
-          'https://th.bing.com/th/id/OIP.A3UAR6_iNY6UPM27f_xtEQHaHa?pid=ImgDet&rs=1'
-    },
-    {
-      'title': 'Loki4',
-      'img':
-          'https://th.bing.com/th/id/OIP.lSdV0-TAk4eY9boJF7VrxQHaIh?pid=ImgDet&rs=1'
-    },
-    {
-      'title': 'Loki5',
-      'img':
-          'https://th.bing.com/th/id/OIP.A3UAR6_iNY6UPM27f_xtEQHaHa?pid=ImgDet&rs=1'
-    },
-    {
-      'title': 'Loki6',
-      'img':
-          'https://th.bing.com/th/id/OIP.lSdV0-TAk4eY9boJF7VrxQHaIh?pid=ImgDet&rs=1'
-    },
-  ];
-
-  mySnackBar(context, msg) {
-    return ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(msg)));
-  }
-
-  ButtonStyle buttonStyle = ElevatedButton.styleFrom(
-    minimumSize: const Size(double.infinity, 60),
-    backgroundColor: Colors.blueAccent,
-    foregroundColor: Colors.black,
-    shape: const RoundedRectangleBorder(
-      borderRadius: BorderRadiusDirectional.horizontal(),
-    ),
-  );
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Center(child: Text('ListView')),
-        backgroundColor: Colors.blueAccent,
-      ),
-      body: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 0,
-          childAspectRatio: 0.7,
+    return DefaultTabController(
+      length: 8,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.blueAccent,
+          foregroundColor: Colors.white,
+          title: Center(child: Text('Loki')),
+          bottom: const TabBar(
+            labelColor: Colors.white,
+            isScrollable: true,
+            tabs: [
+              Tab(icon: Icon(Icons.home), text: 'Home'),
+              Tab(icon: Icon(Icons.search), text: 'Search'),
+              Tab(icon: Icon(Icons.settings), text: 'Settings'),
+              Tab(icon: Icon(Icons.email), text: 'Email'),
+              Tab(icon: Icon(Icons.contact_mail), text: 'Contact'),
+              Tab(icon: Icon(Icons.person), text: 'Person'),
+              Tab(icon: Icon(Icons.access_alarm), text: 'Alarm'),
+              Tab(icon: Icon(Icons.account_balance), text: 'Balance'),
+            ],
+          ),
         ),
-        itemCount: myImage.length,
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onDoubleTap: () {
-              mySnackBar(context, myImage[index]['title']!);
-            },
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              width: double.infinity,
-              height: 350,
-              child: Image.network(
-                myImage[index]['img']!,
-                fit: BoxFit.fill,
-              ),
-            ),
-          );
-        },
+        body: const TabBarView(
+          children: [
+            HomeFragment(),
+            SearchFragment(),
+            SettingsFragment(),
+            EmailFragment(),
+            ContactFragment(),
+            PersonFragment(),
+            AlarmFragment(),
+            BalanceFragment(),
+          ],
+        ),
       ),
     );
   }
