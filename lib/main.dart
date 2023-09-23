@@ -1,12 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practice/Fragment/AlarmFragment.dart';
-import 'package:practice/Fragment/BalanceFragment.dart';
-import 'package:practice/Fragment/ContactFragment.dart';
-import 'package:practice/Fragment/EmailFragment.dart';
-import 'package:practice/Fragment/HomeFragment.dart';
-import 'package:practice/Fragment/PersonFragment.dart';
-import 'package:practice/Fragment/SearchFragment.dart';
-import 'package:practice/Fragment/SettingsFragment.dart';
 
 void main() => runApp(const MyApp());
 
@@ -16,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: ('Practice'),
+      title: ('Navigation'),
       color: Colors.blueAccent,
       debugShowCheckedModeBanner: true,
       home: Home(),
@@ -25,44 +17,95 @@ class MyApp extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
-  Home({super.key});
+  const Home({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 8,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          foregroundColor: Colors.white,
-          title: Center(child: Text('Loki')),
-          bottom: const TabBar(
-            labelColor: Colors.white,
-            isScrollable: true,
-            tabs: [
-              Tab(icon: Icon(Icons.home), text: 'Home'),
-              Tab(icon: Icon(Icons.search), text: 'Search'),
-              Tab(icon: Icon(Icons.settings), text: 'Settings'),
-              Tab(icon: Icon(Icons.email), text: 'Email'),
-              Tab(icon: Icon(Icons.contact_mail), text: 'Contact'),
-              Tab(icon: Icon(Icons.person), text: 'Person'),
-              Tab(icon: Icon(Icons.access_alarm), text: 'Alarm'),
-              Tab(icon: Icon(Icons.account_balance), text: 'Balance'),
-            ],
-          ),
-        ),
-        body: const TabBarView(
-          children: [
-            HomeFragment(),
-            SearchFragment(),
-            SettingsFragment(),
-            EmailFragment(),
-            ContactFragment(),
-            PersonFragment(),
-            AlarmFragment(),
-            BalanceFragment(),
-          ],
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        title: Text('Home'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Activity1('This is from home'),
+                    ));
+              },
+              child: Text('Go Activity 1')),
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Activity2('This is from home'),
+                    ));
+              },
+              child: Text('Go Activity 2')),
+        ],
+      ),
+    );
+  }
+}
+
+class Activity1 extends StatelessWidget {
+  const Activity1({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        title: Text('Activity 1'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          Activity2('This is from Activity 1'),
+                    ));
+              },
+              child: Text('Go Activity 2')),
+        ],
+      ),
+    );
+  }
+}
+
+class Activity2 extends StatelessWidget {
+  const Activity2({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        title: Text('Activity 2'),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          Activity1('This is from Activity 2'),
+                    ));
+              },
+              child: Text('Go Activity 1')),
+        ],
       ),
     );
   }
