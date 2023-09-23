@@ -3,8 +3,8 @@
 PR-Navigastion
 
 ## Getting Started
-![img_5.png](img_5.png)
-![img_6.png](img_6.png)
+![img_7.png](img_7.png)
+![img_8.png](img_8.png)
 
 
 This project is a starting point for a Flutter application.
