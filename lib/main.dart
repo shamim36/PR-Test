@@ -73,7 +73,12 @@ class Home extends StatelessWidget {
         title: const Center(child: Text('ListView')),
         backgroundColor: Colors.blueAccent,
       ),
-      body: ListView.builder(
+      body: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 0,
+          childAspectRatio: 0.7,
+        ),
         itemCount: myImage.length,
         itemBuilder: (context, index) {
           return GestureDetector(
@@ -81,7 +86,7 @@ class Home extends StatelessWidget {
               mySnackBar(context, myImage[index]['title']!);
             },
             child: Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               width: double.infinity,
               height: 350,
               child: Image.network(
